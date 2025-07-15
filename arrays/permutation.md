@@ -14,7 +14,6 @@ function permute(nums: number[]): number[][] {
 };
 function permutation(nums: number[], visited: number[], stack: number[], permutations: number[][]) {
     if (stack.length === nums.length) {
-        console.log(stack);
         permutations.push([...stack])
         return;
     }
@@ -32,7 +31,7 @@ function permutation(nums: number[], visited: number[], stack: number[], permuta
     }
 }
 
-permutations = permute([1,2,3])
+const permutations = permute([1,2,3])
 console.log(permutations)
 ```
 Time Complexity:  N! x N
