@@ -22,3 +22,25 @@ console.log(leaders);
 Time Complexity:  O(N^2)
 
 Space Complexity:  O(N)
+
+## Optimal
+```ts
+const nums = [6, 16, 17, 4, 3, 5, 2];
+
+const n = nums.length;
+let max = nums[n-1];
+
+const leaders = [max];
+
+for (let i = n-2;i>=0;i--){
+    if(nums[i] > max){
+        max = nums[i];
+        leaders.push(nums[i])
+    }
+}
+
+console.log(leaders);
+```
+Time Complexity:  O(N)
+
+Space Complexity:  O(1)
