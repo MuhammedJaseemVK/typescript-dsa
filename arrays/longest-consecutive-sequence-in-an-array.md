@@ -54,4 +54,6 @@ for (let i = 0; i < nums.length - 1; i++) {
 
 return maxLength
 ```
+Time Complexity:  O(NLogN) + O(N)
 
+Space Complexity:  O(1)
