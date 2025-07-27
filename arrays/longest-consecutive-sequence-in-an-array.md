@@ -31,3 +31,27 @@ return maxLength;
 Time Complexity:  O(N^2)
 
 Space Complexity:  O(1)
+
+## Better
+```ts
+if (nums.length === 0) {
+    return 0;
+}
+
+nums.sort((a, b) => a - b); //O(NlogN)
+
+let count = 1;
+let maxLength = count;
+for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] + 1 === nums[i + 1]) {
+        count++;
+    }
+    else if (nums[i] !== nums[i + 1]) {
+        count = 1;
+    }
+    maxLength = Math.max(maxLength, count);
+}
+
+return maxLength
+```
+
