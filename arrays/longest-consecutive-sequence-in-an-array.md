@@ -12,7 +12,7 @@ function search(array: number[], element: number) {
 }
 
 if(nums.length === 0){
-    print(0);
+    console.log(0);
     return 0;
 }
 
@@ -26,6 +26,7 @@ for (let i = 0; i < nums.length; i++) {
     }
     maxLength = Math.max(length, maxLength);
 }
+console.log(maxLength);
 return maxLength;
 ```
 Time Complexity:  O(N^2)
@@ -35,6 +36,7 @@ Space Complexity:  O(1)
 ## Better
 ```ts
 if (nums.length === 0) {
+    console.log(0);
     return 0;
 }
 
@@ -51,9 +53,35 @@ for (let i = 0; i < nums.length - 1; i++) {
     }
     maxLength = Math.max(maxLength, count);
 }
-
+console.log(maxLength);
 return maxLength
 ```
 Time Complexity:  O(NLogN) + O(N)
 
 Space Complexity:  O(1)
+
+## Optimal
+```ts
+if (!nums.length) {
+    console.log(0);
+    return 0;
+}
+
+const hashSet = new Set(nums); //O(N)
+
+let maxLength = 1;
+for (const num of hashSet) {
+    if (!hashSet.has(num - 1)) {
+        let count = 1;
+        while (hashSet.has(num + count)) {
+            count++;
+            maxLength = Math.max(count, maxLength);
+        }
+    }
+}
+console.log(maxLength);
+return maxLength
+```
+Time Complexity:  O(N) + O(2N)
+
+Space Complexity:  O(N)
