@@ -52,3 +52,47 @@ for (let i = 0; i < m; i++) {
 Time Complexity: O((N*M)*(N + M)) + O(N*M)
 
 Space Complexity: O(1)
+
+## Better
+```ts
+const matrix = [
+  [0, 1, 2, 0],
+  [3, 4, 5, 2],
+  [1, 3, 1, 5],
+];
+const m = matrix.length;
+const n = matrix[0].length;
+
+const rows: number[] = Array(m).fill(0);
+const columns: number[] = Array(n).fill(0);
+
+const values: number[][] = [];
+
+for (let i = 0; i < m; i++) {
+  for (let j = 0; j < n; j++) {
+    if (matrix[i][j] === 0) {
+      rows[i] = 1;
+      columns[j] = 1;
+    }
+  }
+}
+
+for (let i = 0; i < m; i++) {
+  for (let j = 0; j < n; j++) {
+    if(rows[i]=== 1|| columns[j]===1){
+        matrix[i][j] = 0;
+    }
+  }
+}
+
+for (let i = 0; i < m; i++) {
+  const column: number[] = [];
+  for (let j = 0; j < n; j++) {
+    column.push(matrix[i][j]);
+  }
+  console.log(column);
+}
+```
+Time Complexity: O(N*M) + O(N*M)
+
+Space Complexity: O(N*M)
