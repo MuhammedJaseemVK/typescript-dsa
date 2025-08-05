@@ -96,3 +96,65 @@ for (let i = 0; i < m; i++) {
 Time Complexity: O(N*M) + O(N*M)
 
 Space Complexity: O(N*M)
+
+
+## Optimized
+```ts
+const matrix = [
+  [0, 1, 2, 0],
+  [3, 4, 5, 2],
+  [1, 3, 1, 5],
+];
+const m = matrix.length;
+const n = matrix[0].length;
+
+const values: number[][] = [];
+
+let col0:boolean = false;
+
+for (let i = 0; i < m; i++) {
+  for (let j = 0; j < n; j++) {
+    if (matrix[i][j] === 0) {
+      matrix[i][0] = 0;
+      if (j !== 0) {
+        matrix[0][j] = 0;
+      } else {
+        col0 = true;
+      }
+    }
+  }
+}
+
+for (let i = 1; i < m; i++) {
+  for (let j = 1; j < n; j++) {
+    if (matrix[i][j] !== 0) {
+      if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+        matrix[i][j] = 0;
+      }
+    }
+  }
+}
+
+if(matrix[0][0] === 0){
+    for(let i=0;i<n;i++){
+        matrix[0][i] = 0;
+    }
+}
+
+if(col0){
+    for(let i=0;i<m;i++){
+        matrix[i][0] = 0;
+    }
+}
+
+for (let i = 0; i < m; i++) {
+  const column: number[] = [];
+  for (let j = 0; j < n; j++) {
+    column.push(matrix[i][j]);
+  }
+  console.log(column);
+}
+```
+Time Complexity: O(N*M) + O(N*M)
+
+Space Complexity: O(1)
