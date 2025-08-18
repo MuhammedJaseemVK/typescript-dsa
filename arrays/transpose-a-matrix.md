@@ -15,8 +15,8 @@ const rows = matrix.length;
 const columns = matrix[0].length;
 
 const result: Array<number[]> = [];
-for (let i = 0; i < rows; i++) {
-  result.push(new Array(columns).fill(0));
+for (let i = 0; i < columns; i++) {
+  result.push(new Array(rows).fill(0));
 }
 
 for (let i = 0; i < rows; i++) {
@@ -25,7 +25,7 @@ for (let i = 0; i < rows; i++) {
   }
 }
 
-for (let i = 0; i < rows; i++) {
+for (let i = 0; i < columns; i++) {
     console.log(result[i]);
 }
 ```
@@ -33,7 +33,7 @@ Time Complexity: O(N*N) + O(N*N)
 
 Space Complexity: O(N*N)
 
-## Optimized (In place)
+## Optimized (In-place transpose (for square matrices only, i.e N*N)
 ```ts
 const matrix = [
   [1, 2, 3, 4],
