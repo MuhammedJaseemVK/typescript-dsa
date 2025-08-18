@@ -55,8 +55,8 @@ const rows = matrix.length;
 const columns = matrix[0].length;
 
 // finding transpose
-for (let i = 0; i < rows; i++) {
-  for (let j = i + 1; j < columns; j++) {
+for (let i = 0; i < columns; i++) {
+  for (let j = i + 1; j < rows; j++) {
     [matrix[j][i], matrix[i][j]] = [matrix[i][j], matrix[j][i]];
   }
 }
