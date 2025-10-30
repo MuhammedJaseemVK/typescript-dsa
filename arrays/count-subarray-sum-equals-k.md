@@ -45,3 +45,30 @@ console.log(count);
 Time Complexity:  O(N^2)
 
 Space Complexity:  O(1)
+
+## Optimized
+```js
+function countSubArraySumEqualsK(nums, k) {
+  let count = 0;
+  let prefixSum = 0;
+  const map = new Map();
+  map.set(0, 1);
+
+  for (const num of nums) {
+    prefixSum += num;
+
+    const remove = prefixSum - k;
+    if (map.has(remove)) {
+      count += map.get(remove);
+    }
+
+    map.set(prefixSum, (map.get(prefixSum) || 0) + 1);
+  }
+  return count;
+}
+
+console.log(countSubArraySumEqualsK([1, 2, 3, -3, 1, 1, 1, 4, 2, -3], 3));
+```
+Time Complexity:  O(N)
+
+Space Complexity:  O(N)
