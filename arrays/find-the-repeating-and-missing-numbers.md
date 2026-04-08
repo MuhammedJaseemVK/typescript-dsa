@@ -7,6 +7,7 @@ Example 1:
 
 Input:
  nums = [3, 5, 4, 1, 1]  
+ 
 Output: [1, 2]  
 
 # Brute force
@@ -45,3 +46,39 @@ console.log(findMissingAndRepeating(nums));
 Time Complexity: O (n^2)
 
 Space Complexity: O(1)
+
+# Better
+```ts
+function findMissingAndRepeating(nums: number[]): { missing: number; repeating: number } {
+  const n = nums.length;
+  const count: number[] = new Array(n).fill(0);
+
+  for (const num of nums) {
+    count[num - 1]++;
+  }
+
+  let missing = -1;
+  let repeating = -1;
+
+  for (let i = 0; i < n; i++) {
+    if (count[i] === 0) {
+      missing = i + 1;
+    }
+
+    if (count[i] === 2) {
+      repeating = i + 1;
+    }
+  }
+
+  return { missing, repeating };
+}
+
+const nums: number[] = [3, 5, 4, 1, 1];
+const result = findMissingAndRepeating(nums);
+
+console.log(result);
+```
+
+Time Complexity: O (n)
+
+Space Complexity: O(n)
