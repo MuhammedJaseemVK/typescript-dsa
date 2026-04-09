@@ -82,3 +82,34 @@ console.log(result);
 Time Complexity: O (n)
 
 Space Complexity: O(n)
+
+# Optimal Approach 1
+```ts
+function findMissingAndRepeating(nums: number[]): { missing: number; repeating: number } {
+    const n: number = nums.length;
+
+    const sumExpected: number = (n * (n + 1)) / 2;
+    const sumActual: number = nums.reduce((sum, num) => sum + num, 0);
+
+    const sumSquaresExpected: number = (n * (n + 1) * (2 * n + 1)) / 6;
+    const sumSquaresActual: number = nums.reduce((acc, num) => acc + num * num, 0);
+
+    const sumDifference: number = sumExpected - sumActual; // missing - repeating
+    const sumSquareDifference: number = sumSquaresExpected - sumSquaresActual; // missing^2 - repeating^2
+
+    const sumXY: number = sumSquareDifference / sumDifference; // missing + repeating
+
+    const missing: number = (sumDifference + sumXY) / 2;
+    const repeating: number = sumXY - missing;
+
+    return { missing, repeating };
+}
+
+// Example usage:
+const nums: number[] = [3, 5, 4, 1, 1];
+console.log(findMissingAndRepeating(nums)); // { missing: 2, repeating: 1 }
+```
+
+Time Complexity: O (n)
+
+Space Complexity: O(1)
